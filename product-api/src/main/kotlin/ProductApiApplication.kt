@@ -1,11 +1,11 @@
-package _9dev.study.hashfunc
+package _9dev.study
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class HashfuncApplication
+class ProductApiApplication
 
 fun main(args: Array<String>) {
-	runApplication<HashfuncApplication>(*args)
+    runApplication<ProductApiApplication>(*args)
 }
