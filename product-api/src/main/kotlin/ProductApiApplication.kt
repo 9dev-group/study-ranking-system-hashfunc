@@ -1,4 +1,4 @@
-package _9dev.study
+package _9dev.study.product.api
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
