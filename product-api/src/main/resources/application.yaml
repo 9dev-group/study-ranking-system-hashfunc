@@ -6,6 +6,27 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
 
+server:
+  undertow:
+    accessLog:
+      enabled: true
+      rotate: false
+      dir: /dev
+      prefix: stdout
+      suffix: ""
+      pattern: >-
+        {
+        "remote_ip":"%a",
+        "remote_hostname": "%h",
+        "remote_user": "%u",
+        "request_time":"%t",
+        "protocol":"%H",
+        "status_code":"%s",
+        "request_method":"%m",
+        "request_uri":"%U",
+        "request_query":"%q"
+        }
+
 ---
 spring:
   config:
