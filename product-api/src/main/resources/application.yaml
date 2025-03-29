@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: local
+  application:
+    name: product-api
+  jpa:
+    database: postgresql
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://postgresql.default.svc.cluster.local:5432/_9dev
+    username: _9dev
+    password: _9dev
