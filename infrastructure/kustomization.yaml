@@ -8,3 +8,4 @@ resources:
 - ./product-api
 - ./quickwit
 - ./strimzi
+- ./vector
