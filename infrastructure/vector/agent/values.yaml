@@ -19,6 +19,7 @@ customConfig:
       inputs:
       - kubernetes_log_route.application
       source: |
+        .line = .message
         .message = parse_json!(.message)
       drop_on_abort: true
       drop_on_error: true
