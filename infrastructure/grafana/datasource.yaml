@@ -1,0 +1,16 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: quickwit
+spec:
+  datasource:
+    name: Quickwit
+    type: quickwit-quickwit-datasource
+    access: proxy
+    url: http://quickwit-control-plane.default.svc.cluster.local:7280/api/v1
+    jsonData:
+      index: kubernetes-logs
+      logMessageField: message
+  instanceSelector:
+    matchLabels:
+      dashboards: grafana
