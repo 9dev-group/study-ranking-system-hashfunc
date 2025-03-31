@@ -7,12 +7,46 @@ customConfig:
     kubernetes_log_source:
       type: kubernetes_logs
 
-  sinks:
-    kubernetes_log_sink:
-      type: kafka
+  transforms:
+    kubernetes_log_route:
+      type: route
       inputs:
       - kubernetes_log_source
+      route:
+        application: .kubernetes.pod_labels.app == "product-api"
+    parse_json_log:
+      type: remap
+      inputs:
+      - kubernetes_log_route.application
+      source: |
+        .message = parse_json!(.message)
+      drop_on_abort: true
+      drop_on_error: true
+      reroute_dropped: true
+    application_log_route:
+      type: route
+      inputs:
+      - parse_json_log
+      route:
+        access: |
+          exists(.message.log_type) && .message.log_type == "access"
+
+  sinks:
+    kubernetes_default_log_sink:
+      type: kafka
+      inputs:
+      - kubernetes_log_route._unmatched
+      - parse_json_log.dropped
+      - application_log_route._unmatched
       bootstrap_servers: main-cluster-main-pool-0.main-cluster-kafka-brokers.default.svc.cluster.local:9092
       topic: kubernetes_logs
+      encoding:
+        codec: json
+    kubernetes_access_log_sink:
+      type: kafka
+      inputs:
+      - application_log_route.access
+      bootstrap_servers: main-cluster-main-pool-0.main-cluster-kafka-brokers.default.svc.cluster.local:9092
+      topic: kubernetes_access_logs
       encoding:
         codec: json
