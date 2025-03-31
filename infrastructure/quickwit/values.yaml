@@ -15,3 +15,47 @@ config:
       endpoint: http://main-hl.default.svc.cluster.local:9000
       access_key_id: "_9dev_minio_access_key"
       secret_access_key: "_9dev_minio_secret_key"
+
+bootstrap:
+  enabled: true
+
+seed:
+  indexes:
+  - version: 0.8
+    index_id: kubernetes-logs
+    doc_mapping:
+      timestamp_field: timestamp
+      field_mappings:
+      - name: timestamp
+        type: datetime
+        input_formats:
+        - iso8601
+        output_format: unix_timestamp_secs
+        fast: true
+      - name: file
+        type: text
+      - name: kubernetes
+        type: json
+      - name: message
+        type: text
+      - name: source_type
+        type: text
+      - name: stream
+        type: text
+    search_settings:
+      default_search_fields:
+      - message
+    indexing_settings:
+      commit_timeout_secs: 10
+
+  sources:
+  - index: kubernetes-logs
+    source:
+      version: 0.8
+      source_id: kafka-source
+      source_type: kafka
+      num_pipelines: 1
+      params:
+        topic: kubernetes_logs
+        client_params:
+          bootstrap.servers: main-cluster-main-pool-0.main-cluster-kafka-brokers.default.svc.cluster.local:9092
