@@ -18,6 +18,7 @@ server:
       suffix: ""
       pattern: >-
         {
+        "log_type": "access",
         "remote_ip":"%a",
         "remote_hostname": "%h",
         "remote_user": "%u",
