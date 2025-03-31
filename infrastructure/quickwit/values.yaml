@@ -48,14 +48,49 @@ seed:
     indexing_settings:
       commit_timeout_secs: 10
 
+  - version: 0.8
+    index_id: access-logs
+    doc_mapping:
+      timestamp_field: timestamp
+      field_mappings:
+      - name: timestamp
+        type: datetime
+        input_formats:
+        - iso8601
+        output_format: unix_timestamp_secs
+        fast: true
+      - name: file
+        type: text
+      - name: kubernetes
+        type: json
+      - name: message
+        type: json
+      - name: source_type
+        type: text
+      - name: stream
+        type: text
+    indexing_settings:
+      commit_timeout_secs: 10
+
   sources:
   - index: kubernetes-logs
     source:
       version: 0.8
-      source_id: kafka-source
+      source_id: source-kubernetes-logs
       source_type: kafka
       num_pipelines: 1
       params:
         topic: kubernetes_logs
+        client_params:
+          bootstrap.servers: main-cluster-main-pool-0.main-cluster-kafka-brokers.default.svc.cluster.local:9092
+
+  - index: access-logs
+    source:
+      version: 0.8
+      source_id: source-kubernetes-access-logs
+      source_type: kafka
+      num_pipelines: 1
+      params:
+        topic: kubernetes_access_logs
         client_params:
           bootstrap.servers: main-cluster-main-pool-0.main-cluster-kafka-brokers.default.svc.cluster.local:9092
