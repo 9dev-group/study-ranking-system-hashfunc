@@ -1,0 +1,12 @@
+yamlApplicationConfig:
+  kafka:
+    clusters:
+    - name: main-cluster
+      bootstrapServers:  main-cluster-kafka-bootstrap.default.svc.cluster.local:9092
+      ksqldbServer: http://ksqldb.default.svc.cluster.local:8088
+  auth:
+    type: disabled
+  management:
+    health:
+      ldap:
+        enabled: false

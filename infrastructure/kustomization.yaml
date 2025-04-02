@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 - ./cert-manager
 - ./grafana
+- ./kafka-ui
 - ./ksqldb
 - ./minio
 - ./postgresql
