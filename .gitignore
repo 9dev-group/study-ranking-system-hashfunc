@@ -191,4 +191,4 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/java,macos,gradle,kotlin,jetbrains+all
 
 ### Custom Configurations ###
-infrastructure/**/charts/
+infrastructure-k8s/**/charts/
