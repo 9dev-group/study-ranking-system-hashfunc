@@ -1,4 +1,4 @@
 rootProject.name = "hashfunc"
 
-include("product-api")
-include("ranking-api")
+include("product:api")
+include("ranking:api")
