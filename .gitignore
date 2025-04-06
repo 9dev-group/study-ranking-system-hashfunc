@@ -192,3 +192,5 @@ gradle-app.setting
 
 ### Custom Configurations ###
 infrastructure-k8s/**/charts/
+
+dist/
