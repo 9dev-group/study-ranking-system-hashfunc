@@ -1,0 +1,18 @@
+role: "Agent"
+
+customConfig:
+  data_dir: /vector-data-dir
+
+  sources:
+    kubernetes_log_source:
+      type: kubernetes_logs
+
+  sinks:
+    kubernetes_log_sink:
+      type: kafka
+      inputs:
+      - kubernetes_log_source
+      bootstrap_servers: main-cluster-main-pool-0.main-cluster-kafka-brokers.default.svc.cluster.local:9092
+      topic: infra.kubernetes.vector.logs.v1
+      encoding:
+        codec: json
