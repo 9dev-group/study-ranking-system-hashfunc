@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: gateway
+  main:
+    banner-mode: off
+  cloud:
+    gateway:
+      routes:
+      - id: product-api
+        uri: http://product-api.default.svc.cluster.local:8080
+        predicates:
+        - Path=/product/**
