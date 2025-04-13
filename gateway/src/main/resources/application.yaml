@@ -10,3 +10,7 @@ spring:
         uri: http://product-api.default.svc.cluster.local:8080
         predicates:
         - Path=/product/**
+      - id: ranking-api
+        uri: http://ranking-api.default.svc.cluster.local:8080
+        predicates:
+        - Path=/ranking/**
