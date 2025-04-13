@@ -1,6 +1,7 @@
 package _9dev.study.infrastructure.kubernetes.vector
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.cdk8s.Chart
@@ -19,7 +20,9 @@ class VectorAgent(scope: software.constructs.Construct, id: String) : Chart(scop
 
     val values: Map<String, Any>
         get() {
-            val objectMapper = ObjectMapper(YAMLFactory()).registerKotlinModule()
+            val objectMapper = ObjectMapper(YAMLFactory())
+                .registerKotlinModule()
+                .setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
             this.javaClass.classLoader.getResourceAsStream("vector/agent/values.yaml")
                 .use { return objectMapper.readValue(it, Map::class.java) as Map<String, Any> }
         }
