@@ -1,0 +1,7 @@
+spring:
+  main:
+    banner-mode: off
+
+ksqldb:
+  host: ksqldb.default.svc.cluster.local
+  port: 8088
