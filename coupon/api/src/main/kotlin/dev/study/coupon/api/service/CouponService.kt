@@ -39,6 +39,7 @@ class CouponService(
         val coupon =
             Coupon(
                 couponCode = couponCode,
+                couponClaim = couponClaim,
             )
         couponRepository.save(coupon)
 
