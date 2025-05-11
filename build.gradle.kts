@@ -10,7 +10,7 @@ plugins {
 }
 
 allprojects {
-    group = "_9dev.study"
+    group = "dev.study"
     version = "0.0.1"
 
     repositories {
