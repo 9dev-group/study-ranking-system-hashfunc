@@ -1,9 +1,0 @@
-# ConfigMap
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: postgresql
-data:
-  POSTGRES_ENCODING: "UNICODE"
-  POSTGRES_COLLATE: "C"
-  POSTGRES_COLLATE_TYPE: "C"
