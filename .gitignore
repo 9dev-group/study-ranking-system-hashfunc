@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/java,macos,gradle,kotlin,jetbrains+all
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,macos,gradle,kotlin,jetbrains+all
+# Created by https://www.toptal.com/developers/gitignore/api/java,macos,gradle,kotlin,jetbrains+all,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,macos,gradle,kotlin,jetbrains+all,visualstudiocode
 
 ### Java ###
 # Compiled class file
@@ -161,6 +161,25 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
 ### Gradle ###
 .gradle
 **/build/
@@ -188,9 +207,4 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
-# End of https://www.toptal.com/developers/gitignore/api/java,macos,gradle,kotlin,jetbrains+all
-
-### Custom Configurations ###
-infrastructure-k8s/**/charts/
-
-dist/
+# End of https://www.toptal.com/developers/gitignore/api/java,macos,gradle,kotlin,jetbrains+all,visualstudiocode
